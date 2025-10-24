@@ -40,6 +40,39 @@ export class UserEntity{
         this._birthDate = birthDate;
         this._image = image;
     }
+    get id(): number {
+        return this._id;
+    }
+    get firstName(): string {
+        return this._firstName;
+    }
+    get lastName(): string {
+        return this._lastName;
+    }
+    get maidenName(): string {
+        return this._maidenName;
+    }
+    get age(): number {
+        return this._age;
+    }
+    get gender(): string {
+        return this._gender;
+    }
+    get email(): string {
+        return this._email;
+    }
+    get phone(): string {
+        return this._phone;
+    }
+    get username(): string {
+        return this._username;
+    }
+    get birthDate(): string {
+        return this._birthDate;
+    }
+    get image(): string {
+        return this._image;
+    }    
 
 
     toUser(): User {

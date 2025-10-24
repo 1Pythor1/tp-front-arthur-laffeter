@@ -17,14 +17,13 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 
 
-const presenter: Singelton<IPresenter<User>> = Singelton.getInstance(new UserPresenter(new DummyJsonUserInteractorFake()));
-const renderer = new Renderer<User>(presenter.instance!, UserCardShort, UserCardFull);
+const renderer: Singelton<Renderer<User>> = Singelton.getInstance(new Renderer<User>(new UserPresenter(new DummyJsonUserInteractorFake()), UserCardShort, UserCardFull));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
 
-      <AppComponent render={renderer}/>
+      <AppComponent render={renderer.instance!}/>
 
     </BrowserRouter>
   </StrictMode>,

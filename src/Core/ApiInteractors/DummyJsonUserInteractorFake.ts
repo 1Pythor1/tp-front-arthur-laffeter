@@ -1,4 +1,5 @@
 import { MALE } from "../constantes";
+import type { User } from "../Data/User.ts";
 import { UserEntity } from "../Data/UserEntity";
 import type { IDataInteractor } from "../Interfaces/IDataInteractor"
 import {delay} from "../Utils/delay.ts";

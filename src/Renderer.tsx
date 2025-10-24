@@ -3,9 +3,9 @@ import type { JSX } from 'react';
 import type { IRender } from "./Interfaces/IRender";
 
 export class Renderer<TData> implements IRender {
-    private _presenter: IPresenter<TData>;
-    private _renderShortFunction: (data: TData) => JSX.Element;
-    private _renderFullFunction: (data: TData) => JSX.Element;
+    private readonly _presenter: IPresenter<TData>;
+    private readonly _renderShortFunction: (data: TData) => JSX.Element;
+    private readonly _renderFullFunction: (data: TData) => JSX.Element;
 
     constructor(
         presenter: IPresenter<TData>, 
@@ -37,3 +37,4 @@ export class Renderer<TData> implements IRender {
         )
     }
 }
+//cree un cache qui stocke la TData, accéder au cache dans renderAll et renderSingle
