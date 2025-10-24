@@ -2,5 +2,6 @@ import type { JSX } from 'react';
 
 
 export interface IRender{
-    render(): Promise<JSX.Element>;
+    renderAll(): Promise<JSX.Element>;
+    renderSingle(id: number): Promise<JSX.Element>;
 }

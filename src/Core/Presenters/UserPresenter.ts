@@ -10,7 +10,11 @@ export class UserPresenter implements IPresenter<User>{
         this._dataInteractor = dataInteractor
     }
 
-    async getData(): Promise<User[]> {
-        return (await this._dataInteractor.getData()).map(productEntity => productEntity.toUser());
+    async getSingleData(id: number): Promise<User> {
+        return ((await this._dataInteractor.getSingleData(id))).toUser();
+    }
+
+    async getDataList(): Promise<User[]> {
+        return (await this._dataInteractor.getDataList()).map(productEntity => productEntity.toUser());
     }
 }

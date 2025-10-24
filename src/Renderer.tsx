@@ -4,22 +4,35 @@ import type { IRender } from "./Interfaces/IRender";
 
 export class Renderer<TData> implements IRender {
     private _presenter: IPresenter<TData>;
-    private _renderFunction: (data: TData) => JSX.Element;
+    private _renderShortFunction: (data: TData) => JSX.Element;
+    private _renderFullFunction: (data: TData) => JSX.Element;
 
-    constructor(presenter: IPresenter<TData>, renderFunction: (data: TData) => JSX.Element) {
+    constructor(
+        presenter: IPresenter<TData>, 
+        renderShortFunction: (data: TData) => JSX.Element,
+        renderFullFunction: (data: TData) => JSX.Element
+    ) {
         this._presenter = presenter;
-        this._renderFunction = renderFunction;
+        this._renderShortFunction = renderShortFunction;
+        this._renderFullFunction = renderFullFunction;
     }
 
-    public async getData(): Promise<TData[]> {
-        return this._presenter.getData();
-    }
 
-    public async render(): Promise<JSX.Element> {
-        const data = await this._presenter.getData();
+
+    public async renderAll(): Promise<JSX.Element> {
+        const data = await this._presenter.getDataList();
         return (
             <>
-                {data.map((item) => this._renderFunction(item))}
+                {data.map((item) => this._renderShortFunction(item))}
+            </>
+        )
+    }
+
+    public async renderSingle(id: number): Promise<JSX.Element> {
+        const data = await this._presenter.getSingleData(id);
+        return (
+            <>
+                {this._renderFullFunction(data)}
             </>
         )
     }

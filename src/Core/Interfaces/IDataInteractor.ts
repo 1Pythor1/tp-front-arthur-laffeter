@@ -1,3 +1,4 @@
 export interface IDataInteractor<TData>{
-    getData(): Promise<TData[]>;
+    getDataList(): Promise<TData[]>;
+    getSingleData(id: number): Promise<TData>;
 }

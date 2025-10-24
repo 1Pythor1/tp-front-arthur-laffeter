@@ -1,0 +1,13 @@
+.user-card-full{
+    border: 1px solid #838383;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #ececec;
+    width: 80%;
+    height: 100%;
+
+    align-self: center;
+    
+}

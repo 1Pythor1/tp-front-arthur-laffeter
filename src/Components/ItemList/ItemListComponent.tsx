@@ -10,7 +10,7 @@ export function ItemListe({render}: {render: IRender}) {
 
     useEffect(() => {
         async function fetchData() {        
-            setItemListe(await render.render());
+            setItemListe(await render.renderAll());
         }
         fetchData();
     }, [render]);

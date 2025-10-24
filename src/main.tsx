@@ -9,16 +9,24 @@ import { AppComponent } from './Components/App/AppComponent.tsx'
 import { Singelton } from "./Core/Utils/Singelton.ts"
 import type { IPresenter } from './Core/Interfaces/IPresenter.ts';
 import { Renderer } from './Renderer.tsx'
-import { UserCard } from './Components/UserCard/UserCard.tsx'
+import { UserCardShort } from './Components/UserCard/UserCardShort.tsx'
+import { UserCardFull } from './Components/UserDetail/UserCardFull.tsx'
+
+import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 
 
 const presenter: Singelton<IPresenter<User>> = Singelton.getInstance(new UserPresenter(new DummyJsonUserInteractor()));
-const renderer = new Renderer<User>(presenter.instance!, UserCard)
+const renderer = new Renderer<User>(presenter.instance!, UserCardShort, UserCardFull);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AppComponent render={renderer}/>
+    <BrowserRouter>
+
+      <AppComponent render={renderer}/>
+
+    </BrowserRouter>
   </StrictMode>,
 )
+
