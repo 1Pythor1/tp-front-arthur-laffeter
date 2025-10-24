@@ -1,0 +1,36 @@
+#spiner{
+    position: relative;
+    margin-top: 120px;
+    width: 100%;
+    height: 600px;
+    background-color: rgb(90, 90, 90);
+    display: grid;
+    place-items: center;
+}
+#square-large{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0);
+    border: 4px solid aqua;
+
+    animation: spin 2s linear infinite;
+}
+#square-small{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0);
+    border: 4px solid rgb(206, 206, 206);
+
+    animation: spin 2s linear infinite reverse;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -6,6 +6,7 @@ import { Header } from '../Header/Header.tsx';
 import './AppComponent.css'
 import type { IRender } from '../../Interfaces/IRender.ts';
 import { ItemSingle } from '../ItemSingle/ItemSingle.tsx';
+import { Spiner } from '../Spiner/Spiner.tsx';
 
 
 export function AppComponent({render}: {render: IRender}) {  
@@ -15,6 +16,8 @@ export function AppComponent({render}: {render: IRender}) {
         <Routes>
           <Route path="/" element={<ItemListe render={render}/>}/>
           <Route path="/user/:id" element={<ItemSingle render={render}/>} />
+
+          <Route path="/spiner" element={<Spiner/>}/>
       </Routes>
       </>
     )

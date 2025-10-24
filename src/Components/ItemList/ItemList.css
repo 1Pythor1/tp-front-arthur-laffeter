@@ -1,5 +1,9 @@
+#item-liste-container{
+        padding-top: 120px;
+}
+
 #item-liste{
-    padding-top: 120px;
+    padding: 50px;
     width: 100%;
     display: flex;
     flex-wrap: wrap; 

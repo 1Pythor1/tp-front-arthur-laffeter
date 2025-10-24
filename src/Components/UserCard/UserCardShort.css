@@ -10,6 +10,14 @@
     transition: transform 0.3s ease;
     
 }
+
 .user-card:hover {
   transform: scale(1.1);
+}
+
+.user-card img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 15px;
 }
