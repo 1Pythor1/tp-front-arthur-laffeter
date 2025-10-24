@@ -1,6 +1,7 @@
-import type { User } from "../Core/Data/User";
+import type { User } from "../../Core/Data/User";
+import './UserCard.css'
 
-export function renderUserCard(user: User) {
+export function UserCard(user: User) {
     return (        
             <div className="user-card" key={user.id}>                
                 <img src={user.image} alt={user.firstName}/>
