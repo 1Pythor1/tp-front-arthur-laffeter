@@ -17,6 +17,8 @@ export function AppComponent({render}: {render: IRender}) {
           <Route path="/" element={<ItemListe render={render}/>}/>
           <Route path="/user/:id" element={<ItemSingle render={render}/>} />
 
+          <Route path="/product/:id" element={<ItemSingle render={render}/>} />
+
           <Route path="/spiner" element={<Spiner/>}/>
       </Routes>
       </>

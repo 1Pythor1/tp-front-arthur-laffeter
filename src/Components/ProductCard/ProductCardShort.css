@@ -1,4 +1,4 @@
-.user-card{
+.product-card{
     flex: 0 1 400px;
     border: 1px solid #838383;
     border-radius: 8px;
@@ -17,11 +17,11 @@
     
 }
 
-.user-card:hover {
+.product-card:hover {
   transform: scale(1.1);
 }
 
-.user-card img{
+.product-card img{
     width: 150px;
     height: 150px;
     border-radius: 50%;

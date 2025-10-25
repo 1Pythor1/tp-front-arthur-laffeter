@@ -1,7 +1,8 @@
 import { User } from "./User"
 import { MALE } from "../constantes";
+import type { IEntity } from "../Interfaces/IEntity";
 
-export class UserEntity{
+export class UserEntity implements IEntity<User>{
     private _id: number;
     private _firstName: string;
     private _lastName: string;
@@ -75,7 +76,7 @@ export class UserEntity{
     }    
 
 
-    toUser(): User {
+    toData(): User {
         return new User(
             this._id,
             this._firstName,

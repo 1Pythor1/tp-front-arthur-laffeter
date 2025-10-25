@@ -16,12 +16,17 @@ export class Renderer<TData extends object> implements IRender {
         this._renderShortFunction = renderShortFunction;
         this._renderFullFunction = renderFullFunction;
     }
+    private applyShortRender(dataList: TData[], index: number, step: number){
+        const start: number = index * step + step;
+        return dataList.slice(start, start + step).map((item) => this._renderShortFunction(item))
+    }
 
-    public async renderAll(): Promise<JSX.Element> {
+    public async renderAll(index: number, step: number): Promise<JSX.Element> {
         const data = await this._presenter.getDataList();
+
         return (
             <>
-                {data.map((item) => this._renderShortFunction(item))}
+                {this.applyShortRender(data, index, step)}
             </>
         )
     }
@@ -35,18 +40,24 @@ export class Renderer<TData extends object> implements IRender {
         )
     }
 
-    public async renderAllFilterd(field: string, value: string): Promise<JSX.Element> {
-        console.log(field, value);
-        const data = await this._presenter.getFilteredData(field, value);
-        //console.log(data);
+    public async renderAllFilterd(field: string, value: string, index: number, step: number): Promise<JSX.Element> {        
+        const data = await this._presenter.getFilteredData(field, value);        
         return (
             <>                
-                {data.map((item) => this._renderShortFunction(item))}
+                {this.applyShortRender(data, index, step)}
             </>
         )
     }
 
     public async getDataFieldList(): Promise<string[]> {
         return Object.keys((await this._presenter.getDataList())[0]);
+    }
+
+    public async getNumberOfData(isFiltered: boolean = false, field: string | null = null, value: string | null = null): Promise<number>{        
+        return (
+            isFiltered
+            ? await this._presenter.getFilteredData(field!, value!)
+            : await this._presenter.getDataList()
+        ).length
     }
 }

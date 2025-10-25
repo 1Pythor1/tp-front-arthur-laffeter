@@ -4,9 +4,26 @@
 
 #item-liste{
     padding: 50px;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap; 
     justify-content: center;
     gap: 30px;
+}
+#item-liste-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 600px;
+}
+#item-button-wrapper{
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+#item-button-wrapper > button{
+    width: 70px;
+    height: 30px;
+    background-color: aqua;
 }
