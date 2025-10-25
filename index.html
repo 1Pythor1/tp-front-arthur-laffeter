@@ -8,6 +8,21 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module"> 
+      const modules = import.meta.glob('/src/main.*.tsx');
+
+      fetch("/envConfig.json")
+      .then((res) => res.json())
+      .then(async (config) => {        
+        const path = `/src/main.${config.env}.tsx`;
+        const loader = modules[path];
+
+        if (loader) {
+          await loader(); 
+        } else {
+          console.error("Fichier introuvable :", path);
+        }
+      });
+    </script>
   </body>
 </html>

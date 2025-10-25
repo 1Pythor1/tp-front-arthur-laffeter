@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom/client'
 import { User } from './Core/Data/User.ts'
 import { UserPresenter } from './Core/Presenters/UserPresenter.ts'
 import { DummyJsonUserInteractor } from './Core/ApiInteractors/DummyJsonUserInteractor.ts'
-import { DummyJsonUserInteractorFake } from './Core/ApiInteractors/DummyJsonUserInteractorFake.ts'
 import { AppComponent } from './Components/App/AppComponent.tsx'
 import { Singelton } from "./Core/Utils/Singelton.ts"
 import { Renderer } from './Renderer.tsx'
