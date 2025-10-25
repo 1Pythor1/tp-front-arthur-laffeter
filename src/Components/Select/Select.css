@@ -1,0 +1,13 @@
+#select-options{
+    width: 100px;
+    position : absolute;
+    
+}
+
+.option{
+     border: 2px solid black;
+     cursor: pointer;
+}
+#select-button > button{
+    width: 100px;
+}

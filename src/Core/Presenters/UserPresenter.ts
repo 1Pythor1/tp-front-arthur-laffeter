@@ -4,17 +4,33 @@ import type { User } from "../Data/User"
 import type { UserEntity } from "../Data/UserEntity"
 
 export class UserPresenter implements IPresenter<User>{
-    _dataInteractor: IDataInteractor<UserEntity>;
+    private _dataInteractor: IDataInteractor<UserEntity>;
+    private _dataList: User[];
 
     constructor(dataInteractor: IDataInteractor<UserEntity>){
         this._dataInteractor = dataInteractor
+        this._dataList = [];
     }
 
-    async getSingleData(id: number): Promise<User> {
-        return ((await this._dataInteractor.getSingleData(id))).toUser();
+    private async loadDataList(): Promise<void>{
+        if(this._dataList.length === 0){
+            this._dataList = (await this._dataInteractor.getDataList()).map(entity => entity.toUser());            
+        }
     }
 
-    async getDataList(): Promise<User[]> {
-        return (await this._dataInteractor.getDataList()).map(productEntity => productEntity.toUser());
+    public async getDataList(): Promise<User[]>{
+        await this.loadDataList();
+        return this._dataList;
     }
+    public async getSingleData(id: number): Promise<User>{
+        await this.loadDataList();
+        return this._dataList.find((user: User) => user.id === id)!;
+    }
+    public async getFilteredData(field: string, value: string): Promise<User[]>{
+        await this.loadDataList();        
+        
+        return this._dataList.filter((user: User) => user[field as keyof User]?.toString().toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+    }
+
+     
 }

@@ -1,0 +1,11 @@
+.toggle-button{
+    color: black;
+    cursor: pointer;
+}
+.toggle-button-on{
+    background-color: aqua;
+}
+.toggle-button-off{
+    background-color: rgb(180, 180, 180);
+    
+}

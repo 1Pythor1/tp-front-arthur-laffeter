@@ -1,5 +1,4 @@
 import { MALE } from "../constantes";
-import type { User } from "../Data/User.ts";
 import { UserEntity } from "../Data/UserEntity";
 import type { IDataInteractor } from "../Interfaces/IDataInteractor"
 import {delay} from "../Utils/delay.ts";
@@ -16,7 +15,7 @@ export  class DummyJsonUserInteractorFake implements IDataInteractor<UserEntity>
     public async getSingleData(id: number): Promise<UserEntity> {
         await delay(1000);
         return Promise.resolve(
-            this._data[id - 1] //this._data.find(user => user.id === id)!
+            this._data[id - 1]
             
         );
     }
