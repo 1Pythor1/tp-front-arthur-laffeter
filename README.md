@@ -71,3 +71,8 @@ export default defineConfig([
   },
 ])
 ```
+Le Json envConfig dans ./public permet de choisir la config. Il y a: 
+- "user",
+- "produit",
+- "fake"
+Les main.*.tsx permettent de gérée l'injection de dépendance. C'est le plus propre que j'ai pu faire.
