@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { ItemListe } from '../ItemList/ItemListComponent.tsx';
 import { Header } from '../Header/Header.tsx';
@@ -9,17 +9,17 @@ import { ItemSingle } from '../ItemSingle/ItemSingle.tsx';
 import { Spiner } from '../Spiner/Spiner.tsx';
 
 
-export function AppComponent({render}: {render: IRender}) {  
+export function AppComponent({render, itemRoute}: {render: IRender, itemRoute: string}) {  
+    const itemPath: string = `/${itemRoute}/:id`;
     return (
       <>
         <Header/>                
         <Routes>
           <Route path="/" element={<ItemListe render={render}/>}/>
-          <Route path="/user/:id" element={<ItemSingle render={render}/>} />
-
-          <Route path="/product/:id" element={<ItemSingle render={render}/>} />
+          <Route path={itemPath} element={<ItemSingle render={render}/>} />          
 
           <Route path="/spiner" element={<Spiner/>}/>
+          <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       </>
     )

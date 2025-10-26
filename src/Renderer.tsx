@@ -1,6 +1,7 @@
 import type { IPresenter } from "./Core/Interfaces/IPresenter";
 import type { JSX } from 'react';
 import type { IRender } from "./Interfaces/IRender";
+import { ErrorNotFound } from "./Components/Error/NotFound"
 
 export class Renderer<TData extends object> implements IRender {
     private readonly _presenter: IPresenter<TData>;
@@ -16,37 +17,40 @@ export class Renderer<TData extends object> implements IRender {
         this._renderShortFunction = renderShortFunction;
         this._renderFullFunction = renderFullFunction;
     }
-    private applyShortRender(dataList: TData[], index: number, step: number){
+    private applyShortRender(dataList: TData[], index: number, step: number): JSX.Element[]{
         const start: number = index * step + step;
         return dataList.slice(start, start + step).map((item) => this._renderShortFunction(item))
     }
 
+    private errorHandler(func: () => JSX.Element[]): JSX.Element{
+        let elt: JSX.Element;
+        try{
+            elt = 
+            <>
+                {func()}
+            </>;
+            
+        }catch(err){
+            elt = <ErrorNotFound/>;
+        }
+        return elt;
+    }
+
     public async renderAll(index: number, step: number): Promise<JSX.Element> {
         const data = await this._presenter.getDataList();
-
-        return (
-            <>
-                {this.applyShortRender(data, index, step)}
-            </>
-        )
+        
+        return this.errorHandler(() => this.applyShortRender(data, index, step));
+        
     }
 
     public async renderSingle(id: number): Promise<JSX.Element> {
         const data = await this._presenter.getSingleData(id);
-        return (
-            <>
-                {this._renderFullFunction(data)}
-            </>
-        )
+        return this.errorHandler(() => [this._renderFullFunction(data)]);
     }
 
     public async renderAllFilterd(field: string, value: string, index: number, step: number): Promise<JSX.Element> {        
         const data = await this._presenter.getFilteredData(field, value);        
-        return (
-            <>                
-                {this.applyShortRender(data, index, step)}
-            </>
-        )
+        return this.errorHandler(() => this.applyShortRender(data, index, step))
     }
 
     public async getDataFieldList(): Promise<string[]> {

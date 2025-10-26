@@ -7,6 +7,7 @@ import { ProductCardShort } from '../ProductCard/ProductCardShort.tsx'
 import { ProductCardFull } from '../ProductDetail/ProductCardFull.tsx'
 
 import { main } from "./Main.tsx"
+import { PRODUCT_ROUTE } from '../../Core/constantes.ts'
 
 
 const renderer: Singelton<Renderer<Product>> = Singelton.getInstance(
@@ -14,4 +15,4 @@ const renderer: Singelton<Renderer<Product>> = Singelton.getInstance(
      ProductCardShort,
     ProductCardFull));
 
-main(renderer.instance!)
+main(renderer.instance!, PRODUCT_ROUTE)

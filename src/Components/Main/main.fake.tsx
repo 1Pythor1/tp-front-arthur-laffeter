@@ -7,8 +7,9 @@ import { UserCardShort } from '../UserCard/UserCardShort.tsx'
 import { UserCardFull } from '../UserDetail/UserCardFull.tsx'
 
 import { main } from "./Main.tsx"
+import { USER_ROUTE } from '../../Core/constantes.ts'
 
 const renderer: Singelton<Renderer<User>> = Singelton.getInstance(new Renderer<User>(new UserPresenter(new DummyJsonUserInteractorFake()), UserCardShort, UserCardFull));
 
 
-main(renderer.instance!)
+main(renderer.instance!, USER_ROUTE)

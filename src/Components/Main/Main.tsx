@@ -8,12 +8,12 @@ import type { IRender } from '../../Interfaces/IRender.ts';
 
 import './index.css';
 
-export function main(renderer: IRender){
+export function main(renderer: IRender, itemRoute: string){
     createRoot(document.getElementById('root')!).render(
         <StrictMode>
             <BrowserRouter>
 
-            <AppComponent render={renderer}/>
+            <AppComponent render={renderer} itemRoute={itemRoute}/>
 
             </BrowserRouter>
         </StrictMode>,
